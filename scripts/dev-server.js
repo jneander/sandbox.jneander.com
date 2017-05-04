@@ -5,15 +5,18 @@ var WriteFilePlugin = require('write-file-webpack-plugin');
 var rimraf = require('rimraf');
 var webpack = require('webpack');
 
+var bundles = require('../config/bundles');
 var config = require('../config/webpack.development.js');
 
 var port = process.env.PORT || 8080;
 
 config.bail = false;
 
-config.entry.index.unshift('react-hot-loader/patch');
-config.entry.index.push('webpack/hot/dev-server');
-config.entry.index.push('webpack-dev-server/client?http://localhost:' + port + '/');
+Object.keys(bundles.entries).forEach(function (bundleName) {
+  config.entry[bundleName].unshift('react-hot-loader/patch');
+  config.entry[bundleName].push('webpack/hot/dev-server');
+  config.entry[bundleName].push('webpack-dev-server/client?http://localhost:' + port + '/');
+});
 
 config.plugins.unshift(new webpack.HotModuleReplacementPlugin());
 config.plugins.push(new webpack.NoErrorsPlugin());

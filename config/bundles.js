@@ -6,21 +6,21 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var bundlePath = path.join(__dirname, '..', 'lib/bundles');
 
 var entries = {
-  index: [
+  home: [
     'babel-polyfill',
-    path.join(bundlePath, 'index.js')
+    path.join(bundlePath, 'home.js')
   ]
 };
 var plugins = [
   new HtmlWebpackPlugin({
-    chunks: ['index'],
+    chunks: ['home'],
     filename: 'index.html',
     template: path.join(__dirname, '..', 'lib/markup/index.html')
   })
 ];
 
 fs.readdirSync(bundlePath).forEach(function (filename) {
-  if (filename === 'index.js') {
+  if (filename === 'home.js') {
     return;
   }
 

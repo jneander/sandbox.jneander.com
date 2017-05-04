@@ -1,7 +1,9 @@
+var fs = require('fs');
 var path = require('path');
 
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
+
+var bundles = require('../config/bundles');
 
 var PRODUCTION = process.env.NODE_ENV === 'production';
 var DEVELOPMENT = !PRODUCTION;
@@ -9,13 +11,11 @@ var DEVELOPMENT = !PRODUCTION;
 module.exports = {
   devtool: 'source-map',
 
-  entry: {
-    index: [
-      'babel-polyfill',
-      path.join(__dirname, '..', 'lib/bundles/index.js')
-    ],
-    react: ['react', 'react-dom']
-  },
+  entry: Object.assign(
+    {},
+    bundles.entries,
+    { react: ['react', 'react-dom'] }
+  ),
 
   externals: {
     'google-api': 'gapi'
@@ -53,13 +53,8 @@ module.exports = {
     new webpack.DefinePlugin({
       DEVELOPMENT: JSON.stringify(DEVELOPMENT),
       PRODUCTION: JSON.stringify(PRODUCTION)
-    }),
-    new HtmlWebpackPlugin({
-      chunks: ['index'],
-      filename: 'index.html',
-      template: path.join(__dirname, '..', 'lib/markup/index.html')
     })
-  ],
+  ].concat(bundles.plugins),
 
   resolve: {
     alias: {

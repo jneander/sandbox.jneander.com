@@ -1,10 +1,10 @@
 {
-  "name": "student-loans",
+  "name": "sandbox",
   "engines": {
     "node": ">=6.9.5"
   },
   "version": "0.0.0",
-  "description": "A tool for tracking and optimizing your student loans",
+  "description": "A place to exercise various projects together and dogfood their development environments",
   "main": "index.js",
   "scripts": {
     "build": "webpack --config ./config/webpack.development.js --progress",
@@ -19,14 +19,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jneander/student-loans.git"
+    "url": "git+https://github.com/jneander/sandbox.git"
   },
   "author": "Jeremy Neander",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jneander/student-loans/issues"
+    "url": "https://github.com/jneander/sandbox/issues"
   },
-  "homepage": "https://github.com/jneander/student-loans#readme",
+  "homepage": "https://github.com/jneander/sandbox#readme",
   "devDependencies": {
     "babel-core": "^6.24.1",
     "babel-loader": "^6.4.1",

@@ -20,6 +20,8 @@ if (process.env.WRITE_TO_DIST) {
 rimraf.sync(config.output.path);
 var compiler = webpack(config);
 
+var port = process.env.PORT || 8080;
+
 compiler.run(function (err, stats) {
   if (!err) {
     var server = new WebpackDevServer(compiler, {
@@ -31,6 +33,6 @@ compiler.run(function (err, stats) {
         colors: true
       }
     });
-    server.listen(8080, 'localhost', function () {});
+    server.listen(port, 'localhost', function () {});
   }
 });

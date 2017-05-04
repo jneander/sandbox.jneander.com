@@ -7,9 +7,11 @@ var webpack = require('webpack');
 
 var config = require('../config/webpack.development.js');
 
+var port = process.env.PORT || 8080;
+
 config.entry.index.unshift('react-hot-loader/patch');
 config.entry.index.push('webpack/hot/dev-server');
-config.entry.index.push('webpack-dev-server/client?http://localhost:8080/');
+config.entry.index.push('webpack-dev-server/client?http://localhost:' + port + '/');
 
 config.plugins.unshift(new webpack.HotModuleReplacementPlugin());
 
@@ -19,8 +21,6 @@ if (process.env.WRITE_TO_DIST) {
 
 rimraf.sync(config.output.path);
 var compiler = webpack(config);
-
-var port = process.env.PORT || 8080;
 
 compiler.run(function (err, stats) {
   if (!err) {

@@ -1,0 +1,66 @@
+:local(.Grid) {
+  border: 1px solid gray;
+  font-family: arial;
+  font-size: 8pt;
+  outline: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+:local(.Grid__BeforeSink) {
+  height: 0;
+  left: 0;
+  outline: 0;
+  position: fixed;
+  top: 0;
+  width: 0;
+}
+
+:local(.Header) {
+  background: #f9f9f9; /* Old browsers */
+  background: linear-gradient(to bottom, #f9f9f9 0%,#f9f9f9 39%,#f1f2f4 43%,#ebecee 96%,#d0d0d0 100%);
+  border-bottom: 1px solid #d3d3d3;
+  border-left: 0;
+  border-right: 1px solid #d3d3d3;
+  border-top: 1px solid #d3d3d3;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+:local(.Header__Columns) {
+  border-bottom: 1px solid silver;
+  cursor: default;
+  left: -1000px;
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+}
+
+:local(.Header__Column) {
+  border-bottom: 0;
+  border-left: 0;
+  border-right: 1px solid silver;
+  border-top: 0;
+  display: inline-block;
+  float: left;
+  height: 16px;
+  left: 1000px;
+  line-height: 16px;
+  margin: 0;
+  overflow: ellipsis;
+  padding: 4px;
+  position: relative;
+}
+
+:local(.Header__Background) {
+  background: #f9f9f9; /* Old browsers */
+  background: linear-gradient(to bottom, #f9f9f9 0%,#f9f9f9 39%,#f1f2f4 43%,#ebecee 96%,#d0d0d0 100%);
+}
+
+:local(.Viewport) {
+  outline: 0px;
+  overflow: auto;
+  position: relative;
+  width: 100%;
+}

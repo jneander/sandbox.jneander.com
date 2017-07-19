@@ -14,10 +14,10 @@ export default class Header extends React.Component {
                 className={styles.Header__Column}
                 id={`${this.props.uid}${column.id}`}
                 title=""
-                style={{ width: '71px' }}
+                style={{ width: column.width }}
               >
                 <span className="slick-column-name">{ column.name }</span>
-                <div className="slick-resizable-handle"></div>
+                <div className={styles.HeaderCell__ResizeHandle}></div>
               </div>
             ))
           }

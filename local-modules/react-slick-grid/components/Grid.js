@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Measure from 'react-measure';
 
 import Header from './Header';
+import Styles from './Styles';
 import Viewport from './Viewport';
 import styles from '../styles/styles.css';
 
@@ -15,18 +16,29 @@ export default class Grid extends React.Component {
   };
 
   static defaultProps = {
+    defaultColumnWidth: 80,
     headerRowHeight: 25,
-    rowHeight: 25
+    rowHeight: 25,
+    topPanelHeight: 25
   };
 
   constructor (props) {
     super(props);
 
+    const columns = props.columns.map((column) => (
+      {
+        ...column,
+        width: Math.max(column.width || 0, props.defaultColumnWidth)
+      }
+    ));
+
     this.state = {
+      columns,
       dimensions: {
         height: 0,
         width: 0
       },
+      totalColumnWidth: columns.reduce((sum, column) => sum + column.width, 0),
       uid: `slickgrid_${Math.round(1000000 * Math.random())}`
     };
   }
@@ -35,24 +47,37 @@ export default class Grid extends React.Component {
 
   render () {
     return (
-      <Measure onMeasure={this.handleMeasure} whitelist={['width', 'height']}>
-        <div className={styles.Grid} style={this.props.style}>
-          <div className={styles.Grid__BeforeSink} tabIndex="0" />
+      <div className={this.props.className} style={this.props.style}>
+        <Styles
+          {...this.props}
+          uid={this.state.uid}
+          columns={this.state.columns}
+          totalColumnWidth={this.state.totalColumnWidth}
+          width={this.state.dimensions.width}
+        />
 
-          <Header
-            uid={this.state.uid}
-            columns={this.props.columns}
-            rowHeight={this.props.headerRowHeight}
-          />
+        <Measure onMeasure={this.handleMeasure} whitelist={['width', 'height']}>
+          <div className={`${this.state.uid} ${styles.Grid}`}>
+            <div className={styles.Grid__BeforeSink} tabIndex="0" />
 
-          <Viewport
-            uid={this.state.uid}
-            columns={this.props.columns}
-            data={this.props.data}
-            rowHeight={this.props.rowHeight}
-          />
-        </div>
-      </Measure>
+            <Header
+              uid={this.state.uid}
+              columns={this.state.columns}
+              rowHeight={this.props.headerRowHeight}
+            />
+
+            <Viewport
+              uid={this.state.uid}
+              columns={this.state.columns}
+              data={this.props.data}
+              rowHeight={this.props.rowHeight}
+              totalColumnWidth={this.state.totalColumnWidth}
+            />
+
+            <div className={styles.Grid__AfterSink} tabIndex="0" />
+          </div>
+        </Measure>
+      </div>
     );
   }
 }

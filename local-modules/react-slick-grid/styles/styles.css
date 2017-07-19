@@ -1,10 +1,15 @@
 :local(.Grid) {
   border: 1px solid gray;
+  box-sizing: border-box;
   font-family: arial;
   font-size: 8pt;
   outline: 0;
   overflow: hidden;
   position: relative;
+}
+
+:local(.Grid *) {
+  box-sizing: inherit;
 }
 
 :local(.Grid__BeforeSink) {
@@ -44,13 +49,13 @@
   border-top: 0;
   display: inline-block;
   float: left;
-  height: 16px;
+  height: 24px;
   left: 1000px;
   line-height: 16px;
   margin: 0;
-  overflow: ellipsis;
   padding: 4px;
   position: relative;
+  text-overflow: ellipsis;
 }
 
 :local(.Header__Background) {
@@ -63,4 +68,56 @@
   overflow: auto;
   position: relative;
   width: 100%;
+}
+
+:local(.GridCanvas) {
+  position: relative;
+}
+
+:local(.Row) {
+  line-height: 20px;
+  width: 100%;
+}
+
+:local(.Row__Even) {
+  composes: Row;
+  background: white;
+}
+
+:local(.Row__Odd) {
+  composes: Row;
+  background: #fafafa;
+}
+
+:local(.Cell) {
+  border-bottom: 1px solid silver;
+  border-left: 1px solid transparent;
+  border-right: 1px dotted silver;
+  border-top: 1px solid transparent;
+  cursor: default;
+  margin: 0;
+  overflow: hidden;
+  padding: 1px 2px 2px 1px;
+  position: absolute;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+:local(.RowCell) {
+  composes: Cell;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+:local(.HeaderCell__ResizeHandle) {
+  cursor: col-resize;
+  display: block;
+  font-size: 0.1px;
+  height: 100%;
+  position: absolute;
+  right: 0px;
+  top: 0;
+  width: 4px;
 }

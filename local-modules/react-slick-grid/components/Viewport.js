@@ -8,7 +8,7 @@ export default class Viewport extends React.Component {
     super(props);
 
     this.state = {
-      totalHeight: props.rowHeight * props.data.length,
+      totalRowHeight: props.rowHeight * props.data.length,
       visibleHeight: '473px',
       width: '508px'
     };
@@ -17,13 +17,18 @@ export default class Viewport extends React.Component {
   render () {
     return (
       <div className={styles.Viewport} style={{ height: this.state.visibleHeight }}>
-        <div className={styles.GridCanvas} style={{ height: this.state.totalHeight, width: this.state.width }}>
+        <div
+          className={styles.GridCanvas}
+          style={{ height: this.state.totalRowHeight, width: this.props.totalColumnWidth }}
+        >
           {
             this.props.data.map((datum, index) => (
               <Row
                 key={index}
                 columns={this.props.columns}
                 datum={datum}
+                rowHeight={this.props.rowHeight}
+                rowIndex={index}
               />
             ))
           }

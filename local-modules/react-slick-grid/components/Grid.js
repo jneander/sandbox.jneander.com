@@ -39,8 +39,6 @@ export default class Grid extends React.Component {
         height: 0,
         width: 0
       },
-      renderedRangeBottom: 0,
-      renderedRangeTop: 0,
       totalGridHeight: props.data.length * props.rowHeight + props.headerRowHeight,
       totalRowHeight: props.data.length * props.rowHeight,
       totalColumnWidth: columns.reduce((sum, column) => sum + column.width, 0),
@@ -54,6 +52,8 @@ export default class Grid extends React.Component {
   handleScroll = () => {
     const measurements = this.viewport.measurements;
 
+    this.props.onDebug(measurements);
+
     const newStates = [];
 
     if (measurements.bufferRowsAbove !== this.state.bufferRowsAbove) {
@@ -63,23 +63,6 @@ export default class Grid extends React.Component {
     if (measurements.bufferRowsBelow !== this.state.bufferRowsBelow) {
       newStates.push({ bufferRowsBelow: measurements.bufferRowsBelow });
     }
-
-//     const minBuffer = 3;
-
-//     let renderedRangeBottom = measurements.bufferRowsAbove + measurements.visibleRowCount;
-//     renderedRangeBottom = Math.min(this.props.data.length, renderedRangeBottom + minBuffer);
-//     if (renderedRangeBottom !== this.state.renderedRangeBottom) {
-//       newStates.push({ renderedRangeBottom });
-//     }
-
-//     const renderedRangeTop = Math.max(0, measurements.bufferRowsAbove - minBuffer);
-//     if (renderedRangeTop !== this.state.renderedRangeTop) {
-//       newStates.push({ renderedRangeTop });
-//     }
-
-//     this.props.onDebug(Object.assign({ ...measurements }, ...newStates));
-
-//     console.log(newStates.length);
 
     if (newStates.length) {
       this.setState(Object.assign({}, ...newStates));
@@ -113,8 +96,6 @@ export default class Grid extends React.Component {
               columns={this.state.columns}
               data={this.props.data}
               headerRowHeight={this.props.headerRowHeight}
-              renderedRangeBottom={0}
-              renderedRangeTop={0}
               rowHeight={this.props.rowHeight}
               totalColumnWidth={this.state.totalColumnWidth}
             />

@@ -18,6 +18,7 @@ export default class Grid extends React.Component {
   static defaultProps = {
     defaultColumnWidth: 80,
     headerRowHeight: 25,
+    onDebug () {},
     rowHeight: 25,
     topPanelHeight: 25
   };
@@ -38,12 +39,35 @@ export default class Grid extends React.Component {
         height: 0,
         width: 0
       },
+      totalGridHeight: props.data.length * props.rowHeight + props.headerRowHeight,
+      totalRowHeight: props.data.length * props.rowHeight,
       totalColumnWidth: columns.reduce((sum, column) => sum + column.width, 0),
       uid: `slickgrid_${Math.round(1000000 * Math.random())}`
     };
   }
 
+  bindViewport = (ref) => { this.viewport = ref };
+
   handleMeasure = (dimensions) => { this.setState({ dimensions }) };
+  handleScroll = () => {
+    const measurements = this.viewport.measurements;
+
+    this.props.onDebug(measurements);
+
+    const newStates = [];
+
+    if (measurements.bufferRowsAbove !== this.state.bufferRowsAbove) {
+      newStates.push({ bufferRowsAbove: measurements.bufferRowsAbove });
+    }
+
+    if (measurements.bufferRowsBelow !== this.state.bufferRowsBelow) {
+      newStates.push({ bufferRowsBelow: measurements.bufferRowsBelow });
+    }
+
+    if (newStates.length) {
+      this.setState(Object.assign({}, ...newStates));
+    }
+  };
 
   render () {
     return (
@@ -57,7 +81,7 @@ export default class Grid extends React.Component {
         />
 
         <Measure onMeasure={this.handleMeasure} whitelist={['width', 'height']}>
-          <div className={`${this.state.uid} ${styles.Grid}`}>
+          <div className={`${this.state.uid} ${styles.Grid}`} onScroll={this.handleScroll}>
             <div className={styles.Grid__BeforeSink} tabIndex="0" />
 
             <Header
@@ -67,9 +91,11 @@ export default class Grid extends React.Component {
             />
 
             <Viewport
+              ref={this.bindViewport}
               uid={this.state.uid}
               columns={this.state.columns}
               data={this.props.data}
+              headerRowHeight={this.props.headerRowHeight}
               rowHeight={this.props.rowHeight}
               totalColumnWidth={this.state.totalColumnWidth}
             />

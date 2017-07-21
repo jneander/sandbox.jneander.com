@@ -115,8 +115,8 @@ export default class Grid extends React.Component {
               columns={this.state.columns}
               data={this.props.data}
               headerRowHeight={this.props.headerRowHeight}
-              renderedRangeBottom={0}
-              renderedRangeTop={0}
+              renderedRangeBottom={this.state.renderedRangeBottom}
+              renderedRangeTop={this.state.renderedRangeTop}
               rowHeight={this.props.rowHeight}
               totalColumnWidth={this.state.totalColumnWidth}
             />

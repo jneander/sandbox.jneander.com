@@ -44,6 +44,12 @@ export default class Viewport extends React.Component {
   }
 
   render () {
+    const rowRange = [];
+    const { renderedRangeBottom, renderedRangeTop } = this.props;
+    for (var i = renderedRangeTop; i < renderedRangeBottom; i++) {
+      rowRange.push({ rowIndex: i, datum: this.props.data[i] });
+    }
+
     return (
       <div ref={this.bindContainer} className={styles.Viewport} style={{ height: this.state.visibleHeight }}>
         <div
@@ -51,13 +57,13 @@ export default class Viewport extends React.Component {
           style={{ height: this.state.totalRowHeight, width: this.props.totalColumnWidth }}
         >
           {
-            this.props.data.map((datum, index) => (
+            rowRange.map(({ rowIndex, datum }) => (
               <Row
-                key={index}
+                key={rowIndex}
                 columns={this.props.columns}
                 datum={datum}
                 rowHeight={this.props.rowHeight}
-                rowIndex={index}
+                rowIndex={rowIndex}
               />
             ))
           }

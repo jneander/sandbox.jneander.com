@@ -48,14 +48,19 @@ export default class Grid extends React.Component {
     };
   }
 
+  componentDidMount () {
+    this.onLayout();
+  }
+
   bindViewport = (ref) => { this.viewport = ref };
 
   handleMeasure = (dimensions) => { this.setState({ dimensions }) };
   handleScroll = () => {
+    this.onLayout();
+  };
+
+  onLayout = () => {
     const measurements = this.viewport.measurements;
-
-    // this.props.onDebug(measurements);
-
     const newStates = [];
 
     if (measurements.bufferRowsAbove !== this.state.bufferRowsAbove) {
@@ -80,8 +85,6 @@ export default class Grid extends React.Component {
     }
 
     this.props.onDebug(Object.assign({ ...measurements }, ...newStates));
-
-//     console.log(newStates.length);
 
     if (newStates.length) {
       this.setState(Object.assign({}, ...newStates));

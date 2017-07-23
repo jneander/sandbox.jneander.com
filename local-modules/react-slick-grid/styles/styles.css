@@ -111,6 +111,10 @@
   padding-right: 4px;
 }
 
+:local(.RowCellActive) {
+  border: 1px solid blue;
+}
+
 :local(.HeaderCell__ResizeHandle) {
   cursor: col-resize;
   display: block;

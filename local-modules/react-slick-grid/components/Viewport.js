@@ -4,6 +4,8 @@ import Row from './Row';
 import styles from '../styles/styles.css';
 
 export default class Viewport extends React.Component {
+  rowMap = {};
+
   constructor (props) {
     super(props);
 
@@ -18,6 +20,17 @@ export default class Viewport extends React.Component {
   }
 
   bindContainer = (ref) => { this.container = ref };
+  bindRow = (ref) => { this.rowMap[ref.props.rowIndex] = ref };
+
+  getCellFromNode = (el) => {
+    if (this.container.contains(el)) {
+      const childIndex = [].findIndex.call(this.container.children, child => child.contains(el));
+      const rowIndex = childIndex + this.props.renderedRangeTop;
+      const row = this.rowMap[rowIndex];
+      const cell = row.getCellFromNode(el);
+      return { cell, row: row.props.rowIndex };
+    }
+  };
 
   get measurements () {
     const totalRowPixels = this.props.data.length * this.props.rowHeight;
@@ -51,8 +64,9 @@ export default class Viewport extends React.Component {
     }
 
     return (
-      <div ref={this.bindContainer} className={styles.Viewport} style={{ height: this.state.visibleHeight }}>
+      <div className={styles.Viewport} style={{ height: this.state.visibleHeight }}>
         <div
+          ref={this.bindContainer}
           className={styles.GridCanvas}
           style={{ height: this.state.totalRowHeight, width: this.props.totalColumnWidth }}
         >
@@ -60,6 +74,8 @@ export default class Viewport extends React.Component {
             rowRange.map(({ rowIndex, datum }) => (
               <Row
                 key={rowIndex}
+                ref={this.bindRow}
+                activeCell={this.props.activeCell}
                 columns={this.props.columns}
                 datum={datum}
                 rowHeight={this.props.rowHeight}

@@ -16,12 +16,33 @@ export default class Row extends React.Component {
     };
   }
 
+  bindContainer = (ref) => { this.container = ref };
+
+  getCellFromNode = (el) => {
+    if (this.container.contains(el)) {
+      const childIndex = [].findIndex.call(this.container.children, child => child.contains(el));
+      return childIndex;
+    }
+  };
+
   render () {
+    const rowIsActive = this.props.activeCell && this.props.activeCell.row === this.props.rowIndex;
+
     return (
-      <div className={this.props.rowIndex % 2 === 0 ? styles.Row__Even : styles.Row__Odd} style={this.state.style}>
+      <div
+        ref={this.bindContainer}
+        className={this.props.rowIndex % 2 === 0 ? styles.Row__Even : styles.Row__Odd}
+        style={this.state.style}
+      >
         {
           this.props.columns.map((column, index) => (
-            <RowCell key={index} column={column} columnIndex={index} datum={this.props.datum} />
+            <RowCell
+              key={index}
+              column={column}
+              columnIndex={index}
+              datum={this.props.datum}
+              isActive={rowIsActive && this.props.activeCell.cell === index}
+            />
           ))
         }
       </div>

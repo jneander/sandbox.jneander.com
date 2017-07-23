@@ -52,11 +52,49 @@ export default class Grid extends React.Component {
     this.onLayout();
   }
 
+  bindBeforeSink = (ref) => { this.beforeSink = ref };
   bindViewport = (ref) => { this.viewport = ref };
 
+  handleClick = (event) => {
+    this.beforeSink.focus();
+    const cell = this.viewport.getCellFromNode(event.target);
+    if (cell) {
+      this.setActiveCell(cell);
+    }
+  };
+
+  handleFocus = (event) => {
+    if (!this.state.activeCell) {
+      this.setState({
+        activeCell: { cell: 0, row: 0 }
+      });
+    }
+  };
+
+  handleKeyDown = (event) => {
+    const activeCell = { ...this.state.activeCell };
+    if (event.which === 37) { // left
+      this.setActiveCell({ cell: activeCell.cell - 1, row: activeCell.row });
+    } else if (event.which === 38) { // up
+      this.setActiveCell({ cell: activeCell.cell, row: activeCell.row - 1 });
+    } else if (event.which === 39) { // right
+      this.setActiveCell({ cell: activeCell.cell + 1, row: activeCell.row });
+    } else if (event.which === 40) { // down
+      this.setActiveCell({ cell: activeCell.cell, row: activeCell.row + 1 });
+    }
+    event.preventDefault();
+  };
+
   handleMeasure = (dimensions) => { this.setState({ dimensions }) };
+
   handleScroll = () => {
     this.onLayout();
+  };
+
+  setActiveCell = (cell) => {
+    if (cell.cell >= 0 && cell.cell < this.props.columns.length && cell.row >= 0 && cell.row < this.props.data.length) {
+      this.setState({ activeCell: cell });
+    }
   };
 
   onLayout = () => {
@@ -103,8 +141,18 @@ export default class Grid extends React.Component {
         />
 
         <Measure onMeasure={this.handleMeasure} whitelist={['width', 'height']}>
-          <div className={`${this.state.uid} ${styles.Grid}`} onScroll={this.handleScroll}>
-            <div className={styles.Grid__BeforeSink} tabIndex="0" />
+          <div
+            className={`${this.state.uid} ${styles.Grid}`}
+            onClick={this.handleClick}
+            onScroll={this.handleScroll}
+          >
+            <div
+              ref={this.bindBeforeSink}
+              className={styles.Grid__BeforeSink}
+              onFocus={this.handleFocus}
+              onKeyDown={this.handleKeyDown}
+              tabIndex="0"
+            />
 
             <Header
               uid={this.state.uid}
@@ -115,6 +163,7 @@ export default class Grid extends React.Component {
             <Viewport
               ref={this.bindViewport}
               uid={this.state.uid}
+              activeCell={this.state.activeCell}
               columns={this.state.columns}
               data={this.props.data}
               headerRowHeight={this.props.headerRowHeight}

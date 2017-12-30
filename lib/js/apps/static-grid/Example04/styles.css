@@ -1,0 +1,23 @@
+:local(.Grid) {
+  background-color: white;
+}
+
+:local(.Body) {
+  display: table-row-group;
+}
+
+:local(.ColumnHeader) {
+  display: table-cell;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  width: 80px;
+}
+
+:local(.GridCell) {
+  display: table-cell;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  width: 80px;
+}

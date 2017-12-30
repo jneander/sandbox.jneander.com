@@ -1,0 +1,13 @@
+:local(.Body) {
+  display: table-row-group;
+}
+
+:local(.ColumnHeader) {
+  height: 30px;
+  width: 80px;
+}
+
+:local(.GridCell) {
+  height: 25px;
+  width: 80px;
+}

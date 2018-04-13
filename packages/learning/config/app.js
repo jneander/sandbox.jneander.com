@@ -29,6 +29,11 @@ module.exports = configureApp({
           sourcePath: 'data-grid-v1'
         },
         {
+          name: 'permissions-table',
+          outputPath: 'permissions-table',
+          sourcePath: 'permissions-table'
+        },
+        {
           name: 'static-grid',
           outputPath: 'static-grid',
           sourcePath: 'static-grid'

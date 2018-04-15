@@ -17,7 +17,44 @@ export default class AriaLayoutGrids extends PureComponent {
             <Heading level="h2">ARIA Layout Grids</Heading>
           </Container>
 
-          <ScrollableList perPage={5} />
+          <table role="grid" aria-rowcount="463" aria-label="Student roster for history 101">
+            <thead>
+              <tr aria-rowindex="1">
+                <th>Last Name</th>
+                <th>First Name</th>
+                <th>E-mail</th>
+                <th>Major</th>
+                <th>Minor</th>
+                <th>Standing</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr aria-rowindex="51">
+                <td>Henderson</td>
+                <td>Alan</td>
+                <td>ahederson56@myuniveristy.edu</td>
+                <td>Business</td>
+                <td>Spanish</td>
+                <td>Junior</td>
+              </tr>
+              <tr aria-rowindex="52">
+                <td>Henderson</td>
+                <td>Alice</td>
+                <td>ahederson345@myuniveristy.edu</td>
+                <td>Engineering</td>
+                <td>none</td>
+                <td>Sophomore</td>
+              </tr>
+              <tr aria-rowindex="53">
+                <td>Henderson</td>
+                <td>Andrew</td>
+                <td>ahederson75@myuniveristy.edu</td>
+                <td>General Studies</td>
+                <td>none</td>
+                <td>Freshman</td>
+              </tr>
+            </tbody>
+          </table>
         </Container>
       </Layout>
     )

@@ -1,0 +1,153 @@
+:local(.PermissionsTableContainer) {
+  border: 1px solid #c7cdd1;
+}
+
+:local(.PermissionsTable) {
+  border-collapse: collapse;
+  border-spacing: 0;
+  empty-cells: show;
+  font-size: 13px;
+  overflow-x: auto;
+  table-layout: fixed;
+  width: 100%;
+}
+
+:local(.LabelColumnWidth) {
+  width: 300px;
+}
+
+:local(.RoleColumnWidth) {
+  width: 150px;
+}
+
+:local(.HeaderRow) {
+  background: #f7f7f7;
+  height: 50px;
+}
+
+:local(.ColumnHeader) {
+  background: #fafafa;
+  height: 50px;
+  width: 140px;
+}
+
+:local(.Row) {
+  background: #ffffff;
+}
+
+:local(.PermissionGroupRow) {
+  height: 60px;
+}
+
+:local(.GroupTablesContainer) {
+  height: 800px;
+  overflow-y: scroll;
+}
+
+:local(.Row:nth-of-type(odd)) {
+  background: #f7f7f7;
+}
+
+:local(.GroupTableColumnHeader) {
+  height: 60px;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+:local(.RowHeader) {
+  height: 60px;
+  text-align: left;
+  width: 300px;
+}
+
+:local(.ContentCell) {
+  text-align: center;
+}
+/*
+$border-color: #ddd;
+$borderShadow: inset 0 1px 0 0 $border-color;
+
+$lightRowBg: #fff;
+$darkRowBg: #f9f9f9;
+
+// container that holds the table, we scroll inside here
+.ic-permissions__table-container {
+  // dimensions of the table on screen, the table will scroll inside this container
+  // might want to change to match design
+  width: 800px;
+  height: 530px;
+
+  // needed for scrolling + sticky headers
+  overflow: auto;
+  position: relative;
+
+  border: 1px solid $border-color;
+
+  margin: 20px;
+}
+
+// the <table> itself
+.ic-permissions__table {
+  // alternate background of row groups
+  tbody {
+    background: $lightRowBg;
+
+    &:nth-of-type(odd) {
+      background: $darkRowBg;
+
+      .ic-permissions__left-header__col-wrapper {
+        background: $darkRowBg;
+      }
+    }
+  }
+
+  td, th {
+    padding: 0;
+  }
+
+  tr {
+    box-shadow: $borderShadow;
+  }
+
+  // content cell, aka a table cell with permission buttons inside it
+  .ic-permissions__cell-content {
+    text-align: center;
+  }
+
+  // header cell for the top and side headers
+  .ic-permissions__header-content {
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    background-color: inherit;
+  }
+
+  // the left "fixed" header
+  .ic-permissions__left-header__col-wrapper {
+    width: 300px;
+    height: 60px;
+    background: $lightRowBg;
+
+    .ic-permissions__header-content {
+      text-align: left;
+      padding-right: 10px;
+
+      // that border shadow effect on the left side header
+      border-right: 1px solid #ddd;
+      box-shadow: 3px 4px 5px 0 #e8e8e8, $borderShadow;
+    }
+  }
+
+  // the header cells of the expanded row
+  .ic-permissions__left-header__expanded {
+
+    .ic-permissions__left-header__col-wrapper {
+
+      .ic-permissions__header-content {
+        text-align: right;
+      }
+    }
+  }
+
+}
+*/

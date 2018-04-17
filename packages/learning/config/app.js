@@ -59,6 +59,19 @@ module.exports = configureApp({
       template: 'shared/markup/index.html'
     },
     {
+      context: 'inst',
+      outputPath: 'inst',
+      pages: [
+        {
+          name: 'permissions',
+          outputPath: 'permissions',
+          sourcePath: 'permissions'
+        }
+      ],
+      sourcePath: 'inst',
+      template: 'shared/markup/index.html'
+    },
+    {
       name: 'home',
       outputPath: '',
       sourcePath: 'home',

@@ -17,29 +17,33 @@ export default class Permissions extends PureComponent {
     return (
       <Layout>
         <div className={styles.Root}>
-          <Heading level="h2" margin="0 0 medium 0">
-            Permissions
-          </Heading>
+          <div className={styles.Heading}>
+            <Heading level="h2" margin="0 0 medium 0">
+              Permissions
+            </Heading>
+          </div>
 
-          <TabList>
-            <TabPanel title="Course Roles">
-              <div className={styles.PermissionsTable}>
-                <PermissionsTable
-                  permissionGroups={coursePermissionGroups}
-                  roles={courseRoles}
-                />
-              </div>
-            </TabPanel>
+          <div className={styles.Content}>
+            <TabList>
+              <TabPanel title="Course Roles">
+                <div className={styles.PermissionsTable}>
+                  <PermissionsTable
+                    permissionGroups={coursePermissionGroups}
+                    roles={courseRoles}
+                  />
+                </div>
+              </TabPanel>
 
-            <TabPanel title="Account Roles">
-              <div className={styles.PermissionsTable}>
-                <PermissionsTable
-                  permissionGroups={accountPermissionGroups}
-                  roles={accountRoles}
-                />
-              </div>
-            </TabPanel>
-          </TabList>
+              <TabPanel title="Account Roles">
+                <div className={styles.PermissionsTable}>
+                  <PermissionsTable
+                    permissionGroups={accountPermissionGroups}
+                    roles={accountRoles}
+                  />
+                </div>
+              </TabPanel>
+            </TabList>
+          </div>
         </div>
       </Layout>
     )

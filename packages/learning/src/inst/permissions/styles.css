@@ -6,6 +6,17 @@
   padding: var(--spacing-large);
 }
 
+:local(.Heading) {
+  flex: 0 0 auto;
+}
+
+:local(.Content) {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: auto;
+}
+
 :local(.PermissionsTable) {
   flex-grow: 1;
+  position: relative;
 }

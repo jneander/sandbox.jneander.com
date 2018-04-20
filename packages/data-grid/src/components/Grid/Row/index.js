@@ -35,7 +35,6 @@ class Row extends Component {
     const rowElementId = `row-${row.id}-label`
 
     const style = {
-      display: 'inline-block',
       height: `${this.props.height}px`
     }
 

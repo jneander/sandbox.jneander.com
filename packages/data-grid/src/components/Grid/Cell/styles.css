@@ -1,6 +1,6 @@
 .Cell {
   border-right: 1px solid #c7cdd1;
-  display: inline-block;
+  display: table-cell;
   height: 100%;
   position: relative;
 }

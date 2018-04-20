@@ -1,5 +1,6 @@
 .GridSection {
   position: relative;
+  display: table;
   flex-grow: 1;
   flex-shrink: 1;
   min-width: 0px;
@@ -7,6 +8,7 @@
 
 .GridSectionFrozen {
   border-right: 1px solid #c7cdd1;
+  display: table;
   position: relative;
   flex-basis: auto;
   flex-grow: 0;

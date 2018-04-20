@@ -1,19 +1,18 @@
-:local(.ColumnHeader) {
+.ColumnHeader {
   border-right: 1px solid #c7cdd1;
-  display: inline-block;
-  height: 100%;
+  display: table-cell;
   position: relative;
 }
 
-:local(.ColumnHeader:last-child) {
+.ColumnHeader:last-child {
   border-right: none;
 }
 
-:local(.ColumnHeader),
-:local(.ColumnHeader > *) {
+.ColumnHeader,
+.ColumnHeader > * {
   outline: none;
 }
 
-:local(.CellActive) {
+.CellActive {
   background: #bae1f7;
 }

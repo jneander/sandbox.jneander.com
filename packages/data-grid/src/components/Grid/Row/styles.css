@@ -1,6 +1,6 @@
 .Row {
   border-bottom: 1px solid #c7cdd1;
-  display: block;
+  display: table-row;
   white-space: nowrap;
 }
 

@@ -1,7 +1,7 @@
 .Header {
   border-bottom: 1px solid #c7cdd1;
   background: #f5f5f5;
-  display: block;
+  display: table-header-group;
   overflow: hidden;
   white-space: nowrap;
   z-index: 1;

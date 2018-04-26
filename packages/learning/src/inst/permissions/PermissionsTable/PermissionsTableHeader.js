@@ -7,8 +7,8 @@ import styles from './styles.css'
 export default class PermissionsTableHeader extends Component {
   render() {
     return (
-      <div role="presentation">
-        <div className={styles.PermissionColumnContainer}>
+      <div className={styles.PermissionsTableHeader} role="presentation">
+        <div className={styles.PermissionsTableHeader__Cell}>
           Permissions
         </div>
 

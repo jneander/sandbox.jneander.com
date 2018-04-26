@@ -1,5 +1,5 @@
 :local(.PermissionsTableContainer) {
-  border: 1px solid #c7cdd1;
+  /* border: 1px solid #c7cdd1; */
 }
 
 :local(.PermissionsTable) {
@@ -10,6 +10,23 @@
   overflow-x: auto;
   table-layout: fixed;
   width: 100%;
+}
+
+:local(.PermissionsTableHeader) {
+  display: table-column-group;
+}
+
+:local(.PermissionsTableHeader__ScrollContainer) {
+  display: grid;
+}
+
+:local(.PermissionsTableHeader__ScrollContainer) {
+  display: table-column-group;
+}
+
+:local(.PermissionsTableHeader__Cell) {
+  display: table-cell;
+  height: 45px;
 }
 
 :local(.LabelColumnWidth) {

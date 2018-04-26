@@ -22,7 +22,7 @@ export default class Permissions extends PureComponent {
           </Heading>
 
           <TabList>
-            <TabPanel title="Course Roles">
+            <TabPanel title="Course Roles" padding="none">
               <div className={styles.PermissionsTable}>
                 <PermissionsTable
                   permissionGroups={coursePermissionGroups}
@@ -31,7 +31,7 @@ export default class Permissions extends PureComponent {
               </div>
             </TabPanel>
 
-            <TabPanel title="Account Roles">
+            <TabPanel title="Account Roles" padding="none">
               <div className={styles.PermissionsTable}>
                 <PermissionsTable
                   permissionGroups={accountPermissionGroups}

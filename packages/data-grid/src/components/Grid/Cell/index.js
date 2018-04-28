@@ -5,13 +5,17 @@ import styles from './styles.css'
 
 class Cell extends PureComponent {
   render() {
-    const style = {
-      width: `${this.props.column.width}px`
-    }
-
     const classNames = [styles.Cell]
     if (this.props.isActiveLocation) {
       classNames.push(styles.CellActive)
+    }
+
+    const style = {
+      height: `${this.props.rowHeight}px`,
+      left: `${this.props.columnOffset}px`,
+      position: 'absolute',
+      top: `${this.props.rowOffset}px`,
+      width: `${this.props.column.width}px`
     }
 
     return (

@@ -238,27 +238,42 @@ export default class Grid extends PureComponent {
     }
 
     return (
-      <ScrollSync>
-        {() => (
+      <ScrollSync
+        headerHeight={this.props.headerHeight}
+        rowHeight={this.props.rowHeight}
+        rows={this.props.rows}
+      >
+        {({firstVisibleRowIndex, lastVisibleRowIndex}) => (
           <div className={styles.Grid} onKeyDown={this.handleKeyDown} style={style}>
             {frozenColumnsStart.length > 0 && (
               <GridSection
                 {...sectionProps}
                 columns={frozenColumnsStart}
+                firstVisibleRowIndex={firstVisibleRowIndex}
                 frozenStart
                 isFirstSection
+                lastVisibleRowIndex={lastVisibleRowIndex}
               />
             )}
 
             <GridSection
               {...sectionProps}
               columns={middleColumns}
+              firstVisibleRowIndex={firstVisibleRowIndex}
               isFirstSection={frozenColumnsStart.length === 0}
               isLastSection={frozenColumnsEnd.length === 0}
+              lastVisibleRowIndex={lastVisibleRowIndex}
             />
 
             {frozenColumnsEnd.length > 0 && (
-              <GridSection {...sectionProps} columns={frozenColumnsEnd} frozenEnd isLastSection />
+              <GridSection
+                {...sectionProps}
+                columns={frozenColumnsEnd}
+                firstVisibleRowIndex={firstVisibleRowIndex}
+                frozenEnd
+                isLastSection
+                lastVisibleRowIndex={lastVisibleRowIndex}
+              />
             )}
           </div>
         )}

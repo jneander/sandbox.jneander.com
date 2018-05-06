@@ -1,8 +1,11 @@
 :local(.Cell) {
   align-items: center;
-  border: 1px solid var(--borderColor);
+  border-width: 1px;
+  border-style: solid;
+  border-bottom-color: var(--borderColor);
   border-left-color: transparent;
   border-right-color: transparent;
+  border-top-color: transparent;
   display: flex;
   justify-content: center;
   height: 100%;

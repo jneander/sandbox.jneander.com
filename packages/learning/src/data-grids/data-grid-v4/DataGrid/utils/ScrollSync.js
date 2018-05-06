@@ -54,6 +54,13 @@ export default class ScrollSync extends Component {
         this.syncScrollPositions(node)
       })
     }
+
+    this.state = {
+      firstVisibleColumnIndex: 0,
+      firstVisibleRowIndex: 0,
+      lastVisibleColumnIndex: 0,
+      lastVisibleRowIndex: 0
+    }
   }
 
   addEvents(node) {
@@ -118,8 +125,27 @@ export default class ScrollSync extends Component {
     if (pane.rows && scrollTopOffset > 0) {
       pane.node.scrollTop = scrollTop // eslint-disable-line
     }
+
     if (pane.columns && scrollLeftOffset > 0) {
       pane.node.scrollLeft = scrollLeft // eslint-disable-line
+    }
+
+    const visibleRowsHeight = clientHeight - this.props.headerHeight
+    const firstVisibleRowIndex = Math.floor(scrollTop / this.props.rowHeight)
+    const lastVisibleRowIndex = Math.ceil((scrollTop + clientHeight - 1) / this.props.rowHeight)
+
+    const newStates = []
+
+    if (firstVisibleRowIndex !== this.state.firstVisibleRowIndex) {
+      newStates.push({firstVisibleRowIndex})
+    }
+
+    if (lastVisibleRowIndex !== this.state.lastVisibleRowIndex) {
+      newStates.push({lastVisibleRowIndex})
+    }
+
+    if (newStates.length) {
+      this.setState(Object.assign({}, ...newStates))
     }
   }
 
@@ -140,6 +166,6 @@ export default class ScrollSync extends Component {
   }
 
   render() {
-    return this.props.children()
+    return this.props.children(this.state)
   }
 }

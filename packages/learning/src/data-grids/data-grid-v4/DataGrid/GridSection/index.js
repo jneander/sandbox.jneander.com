@@ -62,8 +62,10 @@ export default class GridSection extends PureComponent {
             bindActiveElement={this.props.bindActiveElement}
             columns={this.props.columns}
             headerHeight={this.props.headerHeight}
+            firstVisibleRowIndex={this.props.firstVisibleRowIndex}
             isInFirstSection={this.props.isFirstSection}
             isInLastSection={this.props.isLastSection}
+            lastVisibleRowIndex={this.props.lastVisibleRowIndex}
             onClick={this.props.onClick}
             renderCell={this.props.renderCell}
             rowHeight={this.props.rowHeight}

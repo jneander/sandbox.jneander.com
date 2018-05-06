@@ -38,7 +38,8 @@ export default class Body extends Component {
 
   render() {
     const style = {
-      top: `${this.props.headerHeight}px`
+      height: `${this.props.rows.length * this.props.rowHeight}px`,
+      top: `${this.props.headerHeight}px`,
     }
 
     const {activeLocation, bindActiveElement, columns, rows} = this.props
@@ -47,9 +48,13 @@ export default class Body extends Component {
 
     let rowOffset = 0
     let columnOffset
+    const lastRowIndex = Math.min(rows.length - 1, this.props.lastVisibleRowIndex)
 
-    for (let r = 0; r < rows.length; r++) {
+    for (let r = this.props.firstVisibleRowIndex; r <= lastRowIndex; r++) {
       const row = rows[r]
+      if (!row) {
+        debugger
+      }
       const rowElementId = `row-${row.id}-label`
       const isActiveRow = activeLocation.rowId === row.id
 
@@ -82,7 +87,7 @@ export default class Body extends Component {
           isLastRow: r === rows.length - 1,
           key: `${row.id}_${column.id}`,
           height: this.props.rowHeight,
-          rowOffset: r * this.props.rowHeight - r
+          rowOffset: r * this.props.rowHeight
         }
 
         cells.push(React.cloneElement(cell, props))

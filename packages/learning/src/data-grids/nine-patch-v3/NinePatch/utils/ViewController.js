@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {func} from 'prop-types'
+import {element, func} from 'prop-types'
 
 function syncScrollPosition(node, view) {
   const {clientHeight, clientWidth, scrollHeight, scrollLeft, scrollTop, scrollWidth} = node
@@ -23,7 +23,7 @@ export default class ViewController extends Component {
   }
 
   static propTypes = {
-    children: func.isRequired
+    children: element.isRequired
   }
 
   constructor(props) {
@@ -87,6 +87,6 @@ export default class ViewController extends Component {
   }
 
   render() {
-    return this.props.children()
+    return this.props.children
   }
 }

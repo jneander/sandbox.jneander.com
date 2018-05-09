@@ -10,27 +10,38 @@ export default class Section extends PureComponent {
 
   render() {
     const className = this.props.horizontalScroll ? styles.ScrollableSection : styles.FrozenSection
+    const contentWidth = this.props.columns.reduce((sum, column) => sum + column.width, 0)
+    const bottomContentHeight = this.props.bottomRows.length * this.props.rowHeight
+    const scrollableContentHeight = this.props.scrollableRows.length * this.props.rowHeight
+    const topContentHeight = this.props.topRows.length * this.props.rowHeight
 
     return (
       <div className={className}>
-        <Subsection
-          contentHeight={this.props.sectionHeights[0]}
-          contentWidth={this.props.contentWidth}
-          horizontalScroll={this.props.horizontalScroll}
-        />
+        {this.props.topRows.length > 0 && (
+          <Subsection
+            contentHeight={topContentHeight}
+            contentWidth={contentWidth}
+            horizontalScroll={this.props.horizontalScroll}
+            rows={this.props.topRows}
+          />
+        )}
 
         <Subsection
-          contentHeight={this.props.sectionHeights[1]}
-          contentWidth={this.props.contentWidth}
+          contentHeight={scrollableContentHeight}
+          contentWidth={contentWidth}
           horizontalScroll={this.props.horizontalScroll}
+          rows={this.props.scrollableRows}
           verticalScroll
         />
 
-        <Subsection
-          contentHeight={this.props.sectionHeights[2]}
-          contentWidth={this.props.contentWidth}
-          horizontalScroll={this.props.horizontalScroll}
-        />
+        {this.props.topRows.length > 0 && (
+          <Subsection
+            contentHeight={bottomContentHeight}
+            contentWidth={contentWidth}
+            horizontalScroll={this.props.horizontalScroll}
+            rows={this.props.bottomRows}
+          />
+        )}
       </div>
     )
   }

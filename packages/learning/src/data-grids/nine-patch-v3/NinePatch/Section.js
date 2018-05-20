@@ -15,30 +15,39 @@ export default class Section extends PureComponent {
     const scrollableContentHeight = this.props.scrollableRows.length * this.props.rowHeight
     const topContentHeight = this.props.topRows.length * this.props.rowHeight
 
+    const subsectionProps = {
+      columns: this.props.columns,
+      contentWidth: contentWidth,
+      horizontalScroll: this.props.horizontalScroll,
+      horizontalScrollDirection: this.props.horizontalScrollDirection,
+      rowHeight: this.props.rowHeight,
+      verticalScrollDirection: this.props.verticalScrollDirection
+    }
+
     return (
       <div className={className}>
         {this.props.topRows.length > 0 && (
           <Subsection
+            {...subsectionProps}
             contentHeight={topContentHeight}
-            contentWidth={contentWidth}
-            horizontalScroll={this.props.horizontalScroll}
+            firstRowIndex={0}
             rows={this.props.topRows}
           />
         )}
 
         <Subsection
+          {...subsectionProps}
           contentHeight={scrollableContentHeight}
-          contentWidth={contentWidth}
-          horizontalScroll={this.props.horizontalScroll}
+          firstRowIndex={this.props.topRows.length}
           rows={this.props.scrollableRows}
           verticalScroll
         />
 
         {this.props.topRows.length > 0 && (
           <Subsection
+            {...subsectionProps}
             contentHeight={bottomContentHeight}
-            contentWidth={contentWidth}
-            horizontalScroll={this.props.horizontalScroll}
+            firstRowIndex={this.props.topRows.length + this.props.scrollableRows.length}
             rows={this.props.bottomRows}
           />
         )}

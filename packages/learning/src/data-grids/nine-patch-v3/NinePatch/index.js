@@ -40,15 +40,24 @@ export default class NinePatch extends PureComponent {
 
     return (
       <ViewController>
-        <div className={styles.Container}>
-          {frozenColumnsStart.length > 0 && (
-            <Section {...sectionProps} columns={frozenColumnsStart} />
-          )}
+        {viewControllerProps => (
+          <div className={styles.Container}>
+            {frozenColumnsStart.length > 0 && (
+              <Section {...sectionProps} {...viewControllerProps} columns={frozenColumnsStart} />
+            )}
 
-          <Section {...sectionProps} columns={scrollableColumns} horizontalScroll />
+            <Section
+              {...sectionProps}
+              {...viewControllerProps}
+              columns={scrollableColumns}
+              horizontalScroll
+            />
 
-          {frozenColumnsEnd.length > 0 && <Section {...sectionProps} columns={frozenColumnsEnd} />}
-        </div>
+            {frozenColumnsEnd.length > 0 && (
+              <Section {...sectionProps} {...viewControllerProps} columns={frozenColumnsEnd} />
+            )}
+          </div>
+        )}
       </ViewController>
     )
   }

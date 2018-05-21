@@ -1,8 +1,7 @@
 import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 
-import ScrollSync from './utils/ScrollSync'
-import ScrollSyncPane from './utils/ScrollSyncPane'
+import ViewController from './utils/ViewController'
 import GridSection from './GridSection'
 import KeyCodes from './utils/KeyCodes'
 import Style from './Style'
@@ -242,7 +241,7 @@ export default class Grid extends PureComponent {
     }
 
     return (
-      <ScrollSync>
+      <ViewController>
         {() => (
           <div className={styles.Grid} onKeyDown={this.handleKeyDown} style={style}>
             <Style
@@ -273,7 +272,7 @@ export default class Grid extends PureComponent {
             )}
           </div>
         )}
-      </ScrollSync>
+      </ViewController>
     )
   }
 }

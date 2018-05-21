@@ -28,7 +28,10 @@ export default class ViewController extends Component {
     }
 
     this._handleNodeScroll = event => {
-      this.syncScrollPositions(event.target)
+      const node = event.target
+      window.requestAnimationFrame(() => {
+        this.syncScrollPositions(node)
+      })
     }
 
     this._updateDirectionDataFromNode = node => {

@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react'
 
-import ScrollSyncPane from '../utils/ScrollSyncPane'
+import ControlledView from '../utils/ControlledView'
 import Body from '../Body'
 import Header from '../Header'
 import styles from './styles.css'
@@ -55,15 +55,15 @@ export default class GridSection extends PureComponent {
 
     return (
       <div className={className} role="grid" style={style}>
-        <ScrollSyncPane columns={!(this.props.frozenStart || this.props.frozenEnd)}>
+        <ControlledView horizontal={!(this.props.frozenStart || this.props.frozenEnd)}>
           <Header
             {...props}
             height={this.props.headerHeight}
             renderColumnHeader={this.props.renderColumnHeader}
           />
-        </ScrollSyncPane>
+        </ControlledView>
 
-        <ScrollSyncPane columns={!(this.props.frozenStart || this.props.frozenEnd)} rows>
+        <ControlledView horizontal={!(this.props.frozenStart || this.props.frozenEnd)} vertical>
           <Body
             {...props}
             headerHeight={this.props.headerHeight}
@@ -71,7 +71,7 @@ export default class GridSection extends PureComponent {
             rowHeight={this.props.rowHeight}
             rows={this.props.rows}
           />
-        </ScrollSyncPane>
+        </ControlledView>
       </div>
     )
   }

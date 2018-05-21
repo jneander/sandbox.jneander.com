@@ -31,6 +31,14 @@
   border-bottom-color: var(--activeBorderColor);
 }
 
+:local(.Cell.ActiveCell) {
+  border-bottom-color: var(--activeBorderColor);
+  border-left-color: var(--activeBorderColor);
+  border-right-color: var(--activeBorderColor);
+  border-top-color: var(--activeBorderColor);
+  z-index: 3;
+}
+
 :local(.Cell.ActiveRow) {
   border-top-color: var(--activeBorderColor);
   border-bottom-color: var(--activeBorderColor);

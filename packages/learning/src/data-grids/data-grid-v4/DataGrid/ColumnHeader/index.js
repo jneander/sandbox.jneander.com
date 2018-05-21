@@ -13,10 +13,10 @@ export default class ColumnHeader extends PureComponent {
     }
 
     const classNames = [styles.ColumnHeader]
-    if (this.props.isActiveLocation) {
+    if (this.props.isActiveLocation && this.props.highlightActiveLocation) {
       classNames.push(styles.CellActive)
     }
-    if (this.props.isActiveColumn) {
+    if (this.props.isActiveColumn && this.props.highlightActiveColumn) {
       classNames.push(styles.ActiveColumn)
     }
     if (this.props.isFirstColumn) {

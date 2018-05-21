@@ -41,30 +41,32 @@ export default class GridSection extends PureComponent {
       className = styles.GridSectionFrozenEnd
     }
 
+    const props = {
+      activeLocation: this.props.activeLocation,
+      bindActiveElement: this.props.bindActiveElement,
+      columns: this.props.columns,
+      highlightActiveColumn: this.props.highlightActiveColumn,
+      highlightActiveLocation: this.props.highlightActiveLocation,
+      highlightActiveRow: this.props.highlightActiveRow,
+      isInFirstSection: this.props.isFirstSection,
+      isInLastSection: this.props.isLastSection,
+      onClick: this.props.onClick
+    }
+
     return (
       <div className={className} role="grid" style={style}>
         <ScrollSyncPane columns={!(this.props.frozenStart || this.props.frozenEnd)}>
           <Header
-            activeLocation={this.props.activeLocation}
-            bindActiveElement={this.props.bindActiveElement}
-            columns={this.props.columns}
+            {...props}
             height={this.props.headerHeight}
-            isInFirstSection={this.props.isFirstSection}
-            isInLastSection={this.props.isLastSection}
-            onClick={this.props.onClick}
             renderColumnHeader={this.props.renderColumnHeader}
           />
         </ScrollSyncPane>
 
         <ScrollSyncPane columns={!(this.props.frozenStart || this.props.frozenEnd)} rows>
           <Body
-            activeLocation={this.props.activeLocation}
-            bindActiveElement={this.props.bindActiveElement}
-            columns={this.props.columns}
+            {...props}
             headerHeight={this.props.headerHeight}
-            isInFirstSection={this.props.isFirstSection}
-            isInLastSection={this.props.isLastSection}
-            onClick={this.props.onClick}
             renderCell={this.props.renderCell}
             rowHeight={this.props.rowHeight}
             rows={this.props.rows}

@@ -5,13 +5,13 @@ import styles from './styles.css'
 export default class Cell extends PureComponent {
   render() {
     const classNames = [styles.Cell]
-    if (this.props.isActiveLocation) {
-      classNames.push(styles.CellActive)
+    if (this.props.isActiveLocation && this.props.highlightActiveLocation) {
+      classNames.push(styles.ActiveCell)
     }
-    if (this.props.isActiveColumn) {
+    if (this.props.isActiveColumn && this.props.highlightActiveColumn) {
       classNames.push(styles.ActiveColumn)
     }
-    if (this.props.isActiveRow) {
+    if (this.props.isActiveRow && this.props.highlightActiveRow) {
       classNames.push(styles.ActiveRow)
     }
     if (this.props.isFirstRow) {

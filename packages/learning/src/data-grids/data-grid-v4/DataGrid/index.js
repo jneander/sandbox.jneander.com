@@ -11,6 +11,9 @@ export default class Grid extends PureComponent {
   static defaultProps = {
     freezeColumnsEnd: 0,
     freezeColumnsStart: 0,
+    highlightActiveColumn: true,
+    highlightActiveLocation: true,
+    highlightActiveRow: true,
     navigableHeaders: false,
     rowsPerPage: 10
   }

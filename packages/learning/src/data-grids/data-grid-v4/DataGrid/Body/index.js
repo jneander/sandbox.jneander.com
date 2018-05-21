@@ -72,6 +72,9 @@ export default class Body extends Component {
         const props = {
           column: column,
           columnOffset: columnOffset,
+          highlightActiveColumn: this.props.highlightActiveColumn,
+          highlightActiveLocation: this.props.highlightActiveLocation,
+          highlightActiveRow: this.props.highlightActiveRow,
           isActiveColumn: activeLocation.columnId === column.id,
           isActiveLocation: isActiveLocation,
           isActiveRow: activeLocation.rowId === row.id,

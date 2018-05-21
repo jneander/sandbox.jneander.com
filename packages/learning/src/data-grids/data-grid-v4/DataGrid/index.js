@@ -5,6 +5,7 @@ import ScrollSync from './utils/ScrollSync'
 import ScrollSyncPane from './utils/ScrollSyncPane'
 import GridSection from './GridSection'
 import KeyCodes from './utils/KeyCodes'
+import Style from './Style'
 import styles from './styles.css'
 
 export default class Grid extends PureComponent {
@@ -244,6 +245,13 @@ export default class Grid extends PureComponent {
       <ScrollSync>
         {() => (
           <div className={styles.Grid} onKeyDown={this.handleKeyDown} style={style}>
+            <Style
+              activeLocation={this.state.activeLocation}
+              highlightActiveColumn={this.props.highlightActiveColumn}
+              highlightActiveLocation={this.props.highlightActiveLocation}
+              highlightActiveRow={this.props.highlightActiveRow}
+            />
+
             {frozenColumnsStart.length > 0 && (
               <GridSection
                 {...sectionProps}

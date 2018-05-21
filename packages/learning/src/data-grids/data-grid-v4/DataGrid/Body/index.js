@@ -72,12 +72,6 @@ export default class Body extends Component {
         const props = {
           column: column,
           columnOffset: columnOffset,
-          highlightActiveColumn: this.props.highlightActiveColumn,
-          highlightActiveLocation: this.props.highlightActiveLocation,
-          highlightActiveRow: this.props.highlightActiveRow,
-          isActiveColumn: activeLocation.columnId === column.id,
-          isActiveLocation: isActiveLocation,
-          isActiveRow: activeLocation.rowId === row.id,
           isEvenRow: r % 2 === 0,
           isFirstColumn: c === 0 && this.props.isInFirstSection,
           isFirstRow: r === 0,
@@ -85,6 +79,7 @@ export default class Body extends Component {
           isLastRow: r === rows.length - 1,
           key: `${row.id}_${column.id}`,
           height: this.props.rowHeight,
+          row,
           rowOffset: r * this.props.rowHeight - r
         }
 

@@ -1,0 +1,45 @@
+.links line {
+  stroke: #76963e;
+  stroke-width: 1.0px;
+  stroke-opacity: 1.5;
+}
+
+.nodes circle {
+  stroke: green;
+  stroke-width: 0.5px;
+}
+
+#graph {
+  height: 500px;
+  width: 960px;
+}
+
+#testSvgId {
+  height: 500px;
+  width: 960px;
+}
+
+#backgroundId {
+  height: 500px;
+  width: 960px;
+}
+
+text {
+  font: bold 12px monospace;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column-1 {
+  flex-basis: 500px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.flex-column-2 {
+  flex-grow: 1;
+  flex-shrink: 1;
+}
